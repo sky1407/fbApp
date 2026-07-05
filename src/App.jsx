@@ -2,21 +2,21 @@ import { useState, useEffect } from 'react';
 import PostForm from './PostForm'; 
 import PostCard from './PostCard';
 
-// 1. Automatický generátor testovacích príspevkov na nástenke
+// 1. Automatic mock posts generator for the wall
 const INITIAL_POSTS = Array.from({ length: 25 }, (_, index) => ({
   id: `post_mock_${index + 1}`,
-  content: `<p>Toto je automatický testovací príspevok číslo <b>${index + 1}</b>. Obsahuje formátovaný text, ktorý simuluje príspevok na sieti.</p>`,
-  thumbnail: index % 3 === 0 ? `https://picsum.photos{index + 10}/800/400` : "",
+  content: `<p>This is an automated mock post number <b>${index + 1}</b>. It contains formatted text simulating a feed post.</p>`,
+  thumbnail: index % 3 === 0 ? `https://picsum.photos/${index + 10}/800/400` : "",
   likes: Math.floor(Math.random() * 10),
   comments: [
     {
       id: `comment_mock_${index + 1}`,
-      text: "Skvelý príspevok! Veľmi sa mi páči toto moderné používateľské rozhranie.",
+      text: "Great post! I really love this modern user interface.",
       likes: 2,
       replies: [
         {
           id: `reply_mock_${index + 1}`,
-          text: "Súhlasím, vyzerá to super!",
+          text: "I agree, looks amazing!",
           likes: 1
         }
       ]
@@ -25,10 +25,10 @@ const INITIAL_POSTS = Array.from({ length: 25 }, (_, index) => ({
 }));
 
 function App() {
-  // 2. Hlavný stav aplikácie (State Management)
+  // 2. Main application state (Load persisted posts if available, otherwise default to INITIAL_POSTS)
   const [posts, setPosts] = useState(() => {
-    const savedPosts = localStorage.getItem('fb_wall_posts');
-    return savedPosts ? JSON.parse(savedPosts) : INITIAL_POSTS;
+    const saved = localStorage.getItem('fb_wall_posts');
+    return saved ? JSON.parse(saved) : INITIAL_POSTS;
   });
 
   const [commentInputs, setCommentInputs] = useState({});
@@ -43,12 +43,12 @@ function App() {
   const [editingCommentId, setEditingCommentId] = useState(null); 
   const [editCommentText, setEditCommentText] = useState('');     
 
-  // 3. Ukladanie do localStorage pri zmene stavu
+  // 3. Saving to localStorage on state change
   useEffect(() => {
     localStorage.setItem('fb_wall_posts', JSON.stringify(posts));
   }, [posts]);
 
-  // 4. Detekcia skrolovania pre nekonečnú nástenku
+  // 4. Scroll detection for infinite feed
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight - 100) {
@@ -59,7 +59,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // === AKCIE PRE PRÍSPEVKY ===
+  // === ACTIONS FOR POSTS ===
   const handleAddPost = (content, thumbnail) => {
     const newPost = {
       id: `post_${Date.now()}`,
@@ -89,7 +89,7 @@ function App() {
     setEditingPostId(null);
   };
 
-  // === AKCIE PRE KOMENTÁRE ===
+  // === ACTIONS FOR COMMENTS ===
   const handleAddComment = (postId, text) => {
     if (!text || !text.trim()) return;
     const newComment = {
@@ -132,7 +132,7 @@ function App() {
     setEditingCommentId(null);
   };
 
-  // === AKCIE PRE ODPOVEDE (2. ÚROVEŇ) ===
+  // === ACTIONS FOR REPLIES (2nd LEVEL) ===
   const handleAddReply = (postId, commentId, text) => {
     if (!text || !text.trim()) return;
     const newReply = {
@@ -150,6 +150,7 @@ function App() {
       return post;
     }));
     setExpandedComments(prev => ({ ...prev, [commentId]: true }));
+    setReplyInputs(prev => ({ ...prev, [commentId]: '' }));
   };
 
   const handleDeleteReply = (postId, commentId, replyId) => {
@@ -197,7 +198,7 @@ function App() {
     setExpandedComments(prev => ({ ...prev, [commentId]: !prev[commentId] }));
   };
 
-  // Zbalenie všetkých potrebných funkcií pre sekciu komentárov do jedného balíka
+  // Bundle all required functions for the comment section
   const commentProps = {
     commentInputs, setCommentInputs,
     replyInputs, setReplyInputs,
@@ -215,16 +216,16 @@ function App() {
         
         <header className="mb-8 text-center">
           <h1 className="text-3xl font-extrabold text-blue-600 tracking-tight sm:text-4xl">Facebook "Wall"</h1>
-          <p className="mt-2 text-sm text-gray-500 dark:text-zinc-400">Modulárna architektúra s Reactom a Tailwind CSS</p>
+          <p className="mt-2 text-sm text-gray-500 dark:text-zinc-400">Modular architecture with React and Tailwind CSS</p>
         </header>
         
-        {/* Využitie samostatného formulára */}
+        {/* Independent form usage */}
         <PostForm onAddPost={handleAddPost} />
 
-        {/* Zoznam príspevkov pomocou modulárnych kariet */}
+        {/* Post feed list using modular cards */}
         <div className="space-y-6">
           <h3 className="text-sm font-bold uppercase tracking-wider text-gray-500">
-            Príspevky (Zobrazené: {Math.min(visibleCount, posts.length)} z {posts.length})
+            Posts (Showing: {Math.min(visibleCount, posts.length)} of {posts.length})
           </h3>
           
           {posts.slice(0, visibleCount).map(post => (
@@ -244,7 +245,7 @@ function App() {
           ))}
 
           {visibleCount >= posts.length && posts.length > 0 && (
-            <p className="text-center text-sm text-gray-400 font-medium italic py-4">Dosiahli ste koniec nástenky.</p>
+            <p className="text-center text-sm text-gray-500 dark:text-zinc-400 pt-4">You have reached the end of the feed.</p>
           )}
         </div>
       </div>
