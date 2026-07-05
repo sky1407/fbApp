@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@import "react-quill-new/dist/quill.snow.css";
+
+/* === OPRAVA FAREBNOSTI PRE DARK MODE (LEN JEDNO OKNO) === */
+
+/* Hlavné textové pole - jedno jediné */
+.ql-container.ql-snow {
+  background-color: #18181b !important; /* zinc-900 */
+  border: 1px solid #3f3f46 !important; /* zinc-700 */
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+/* Vnútorná plocha na písanie */
+.ql-editor {
+  min-height: 150px !important;
+  color: #f4f4f5 !important; /* zinc-100 text */
+}
+
+/* Horná lišta s ikonami */
+.ql-toolbar.ql-snow {
+  background-color: #27272a !important; /* zinc-800 */
+  border: 1px solid #3f3f46 !important; /* zinc-700 */
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+/* Farba textu a šípok vo výberových menu */
+.ql-snow .ql-picker {
+  color: #e4e4e7 !important;
+}
+
+/* Východzia farba ikon (sivobiela) */
+.ql-snow .ql-stroke {
+  stroke: #e4e4e7 !important;
+}
+.ql-snow .ql-fill {
+  fill: #e4e4e7 !important;
+}
+
+/* === ZVÝRAZNENIE AKTÍVNYCH TLAČIDIEL === */
+
+/* Keď klikneš na tlačidlo a zapneš napr. Bold alebo Italic */
+.ql-snow.ql-toolbar button.ql-active,
+.ql-snow .ql-toolbar button.ql-active {
+  background-color: #3b82f6 !important; /* Výrazná modrá farba */
+  border-radius: 0.25rem !important;
+}
+
+/* Ikony vnútri stlačeného tlačidla sa rozsvietia na bielo */
+.ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke {
+  stroke: #ffffff !important;
+  stroke-width: 2.5px !important;
+}
+.ql-snow.ql-toolbar button.ql-active .ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-fill {
+  fill: #ffffff !important;
+}
+
+/* Efekt po prejdení myšou (Hover) */
+.ql-snow.ql-toolbar button:hover,
+.ql-snow .ql-toolbar button:hover {
+  background-color: #3f3f46 !important; /* Zvýraznenie na sivo */
+  border-radius: 0.25rem !important;
+}
+
+/* Oprava pre zoznamy a tabuľky */
+.prose table, .prose ul, .prose ol {
+  color: inherit !important;
+}
