@@ -1,14 +1,36 @@
-# Facebook Web Application
+# Facebook Clone (Web App)
 
-Webova aplikacia inspirovana rozhranim a funkciami socialnej siete Facebook. Projekt sluzi ako ukazka prace s komponentovou architekturou, spravou stavu a responzivnym dizajnom.
+A web application inspired by the interface and features of Facebook. The project demonstrates working with component-based architecture, state management, and responsive design.
 
-## Hlavne funkcie
-- **Nastenka s prispevkami:** Dynamicke zobrazovanie feedu s prispevkami a interakciami.
-- **Tvorba obsahu:** Moznost pridavania novych textovych statusov v realnom case.
-- **Responzivne rozhranie:** Layout je plne optimalizovany pre pohodlne prezeranie na mobilnych zariadeniach aj desktopoch.
+## Features
 
-## Pouzite technologie
-- JavaScript (ES6+)
-- React
-- Vite
-- CSS3
+* **News Feed:** Dynamic feed displaying posts and interactions.
+* **Content Creation:** Real-time publishing of new text statuses.
+* **Responsive Layout:** Fully optimized for mobile and desktop screens.
+
+## Tech Stack
+
+* JavaScript (ES6+)
+* React
+* Vite
+* CSS3
+
+## Setup and Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com
+   ```
+
+2. Install dependencies:
+   ```bash
+   cd YOUR-REPOSITORY-NAME
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+The app will be running at `http://localhost:5173`.
