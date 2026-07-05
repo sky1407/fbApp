@@ -17,20 +17,12 @@ A web application inspired by the interface and features of Facebook. The projec
 
 ## Setup and Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com
-   ```
+# 1. Clone the repository:
+git clone https://github.com/sky1407/fbApp.git
 
-2. Install dependencies:
-   ```bash
-   cd YOUR-REPOSITORY-NAME
-   npm install
-   ```
+# 2. Install dependencies:
+cd fbApp
+npm install
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-The app will be running at `http://localhost:5173`.
+# 3. Run the development server:
+npm run dev
