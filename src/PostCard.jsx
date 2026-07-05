@@ -13,18 +13,27 @@ function PostCard({
   handleDeletePost,
   commentProps
 }) {
-  const isEditingThisPost = editingPostId === post.id;
+  const isEditingThisPost = post.id === editingPostId;
+
+  // Funkcia na validáciu URL obrázka
+  const isValidImageUrl = (url) => {
+    if (!url || typeof url !== 'string') return false;
+    return url.startsWith('http') && !url.includes('{') && !url.includes('NaN') && !url.includes('undefined');
+  };
 
   return (
     <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 shadow-sm rounded-xl p-5 sm:p-6 transition hover:shadow-md">
       
-      {/* Thumbnail display if it exists */}
-      {post.thumbnail && (
+      {/* Thumbnail display if it exists and is valid */}
+      {isValidImageUrl(post.thumbnail) && (
         <div className="mb-4 overflow-hidden rounded-lg max-h-[300px] border border-gray-100 dark:border-zinc-800">
           <img 
-            src={String(post.thumbnail).includes('NaN') ? 'https://picsum.photos' : post.thumbnail} 
+            src={post.thumbnail} 
             alt="Post thumbnail" 
-            className="w-full h-full object-cover" 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
           />
         </div>
       )}
