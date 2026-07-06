@@ -15,6 +15,10 @@ A web application inspired by the interface and features of Facebook. The projec
 * Vite
 * CSS3
 
+link: https://fb-app-tau.vercel.app/
+
+or:
+
 ## Setup and Installation
 
 # 1. Clone the repository:
