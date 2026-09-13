@@ -1,71 +1,47 @@
 @import "tailwindcss";
 @import "react-quill-new/dist/quill.snow.css";
 
-/* === OPRAVA FAREBNOSTI PRE DARK MODE (LEN JEDNO OKNO) === */
+/* === ULTRA MODERNÝ 2026 DIZAJN PRE QUILL EDITOR === */
 
-/* Hlavné textové pole - jedno jediné */
-.ql-container.ql-snow {
-  background-color: #18181b !important; /* zinc-900 */
-  border: 1px solid #3f3f46 !important; /* zinc-700 */
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-
-/* Vnútorná plocha na písanie */
-.ql-editor {
-  min-height: 150px !important;
-  color: #f4f4f5 !important; /* zinc-100 text */
-}
-
-/* Horná lišta s ikonami */
+/* Skryjeme staromódne čiary a spojíme to do jedného plávajúceho bloku */
 .ql-toolbar.ql-snow {
   background-color: #27272a !important; /* zinc-800 */
-  border: 1px solid #3f3f46 !important; /* zinc-700 */
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  border: none !important;
+  border-bottom: 1px solid #3f3f46 !important; /* zinc-700 */
+  padding: 10px 14px !important;
 }
 
-/* Farba textu a šípok vo výberových menu */
-.ql-snow .ql-picker {
-  color: #e4e4e7 !important;
+.ql-container.ql-snow {
+  background-color: #18181b !important; /* zinc-900 */
+  border: none !important;
 }
 
-/* Východzia farba ikon (sivobiela) */
-.ql-snow .ql-stroke {
-  stroke: #e4e4e7 !important;
-}
-.ql-snow .ql-fill {
-  fill: #e4e4e7 !important;
-}
-
-/* === ZVÝRAZNENIE AKTÍVNYCH TLAČIDIEL === */
-
-/* Keď klikneš na tlačidlo a zapneš napr. Bold alebo Italic */
-.ql-snow.ql-toolbar button.ql-active,
-.ql-snow .ql-toolbar button.ql-active {
-  background-color: #3b82f6 !important; /* Výrazná modrá farba */
-  border-radius: 0.25rem !important;
+.ql-editor {
+  min-height: 120px !important;
+  color: #f4f4f5 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+  padding: 16px !important;
 }
 
-/* Ikony vnútri stlačeného tlačidla sa rozsvietia na bielo */
-.ql-snow.ql-toolbar button.ql-active .ql-stroke,
-.ql-snow .ql-toolbar button.ql-active .ql-stroke {
-  stroke: #ffffff !important;
-  stroke-width: 2.5px !important;
+/* Farba a svietenie moderných aktívnych ikon */
+.ql-snow .ql-stroke { stroke: #a1a1aa !important; stroke-width: 2px !important; }
+.ql-snow .ql-fill { fill: #a1a1aa !important; }
+.ql-snow .ql-picker { color: #a1a1aa !important; }
+
+.ql-snow.ql-toolbar button.ql-active {
+  background-color: #2563eb !important; /* Facebook Blue */
+  border-radius: 6px !important;
 }
-.ql-snow.ql-toolbar button.ql-active .ql-fill,
-.ql-snow .ql-toolbar button.ql-active .ql-fill {
-  fill: #ffffff !important;
+.ql-snow.ql-toolbar button.ql-active .ql-stroke { stroke: #ffffff !important; }
+.ql-snow.ql-toolbar button.ql-active .ql-fill { fill: #ffffff !important; }
+
+.ql-snow.ql-toolbar button:hover {
+  background-color: #3f3f46 !important;
+  border-radius: 6px !important;
 }
 
-/* Efekt po prejdení myšou (Hover) */
-.ql-snow.ql-toolbar button:hover,
-.ql-snow .ql-toolbar button:hover {
-  background-color: #3f3f46 !important; /* Zvýraznenie na sivo */
-  border-radius: 0.25rem !important;
-}
-
-/* Oprava pre zoznamy a tabuľky */
-.prose table, .prose ul, .prose ol {
-  color: inherit !important;
+/* Prekrytie zbytočných Quill dizajnových chýb */
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border-top: none !important;
 }
